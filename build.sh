@@ -324,7 +324,7 @@ fi
 
 echo "$REPO_BRANCH-$CORE_BRANCH$RELEASE_MANIFEST" > .last_branch
 
-time make -j4
+time mka bacon
 
 check_result "Build failed."
 
