@@ -257,9 +257,8 @@ fi
 
 if [ "$RELEASE_TYPE" = "KD_NIGHTLY" ]
 then
-  if [ -z "$GERRIT_CHANGE_NUMBER" ]
+  if [ ! -z "$GERRIT_CHANGE_NUMBER" ]
   then
-  else
     export KD_EXPERIMENTAL=true
   fi
 elif [ "$RELEASE_TYPE" = "KD_EXPERIMENTAL" ]
