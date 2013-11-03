@@ -116,11 +116,6 @@ export USE_CCACHE=1
 export CCACHE_NLEVELS=4
 export BUILD_WITH_COLORS=0
 
-# remove device-specific stuff
-rm -f .repo/local_manifests/device.xml
-rm -f .repo/local_manifests/roomservice.xml
-
-
 platform=`uname -s`
 if [ "$platform" = "Darwin" ]
 then
@@ -242,8 +237,6 @@ check_result "lunch failed."
 
 # include only the auto-generated locals
 TEMPSTASH=$(mktemp -d)
-mv .repo/local_manifests/* $TEMPSTASH
-mv $TEMPSTASH/roomservice.xml .repo/local_manifests/
 
 # save it
 repo manifest -o $WORKSPACE/archive/manifest.xml -r
@@ -262,18 +255,10 @@ then
   export RELEASE_TYPE=KD_EXPERIMENTAL
 fi
 
-export SIGN_BUILD=false
-
 if [ "$RELEASE_TYPE" = "KD_NIGHTLY" ]
 then
   if [ -z "$GERRIT_CHANGE_NUMBER" ]
   then
-    if [ "$REPO_BRANCH" = "gingerbread" ]
-    then
-      export CYANOGEN_NIGHTLY=true
-    else
-      export KD_NIGHTLY=true
-    fi
   else
     export KD_EXPERIMENTAL=true
   fi
@@ -282,8 +267,6 @@ then
   export KD_EXPERIMENTAL=true
 elif [ "$RELEASE_TYPE" = "KD_RELEASE" ]
 then
-  # gingerbread needs this
-  export CYANOGEN_RELEASE=true
   # ics needs this
   export KD_RELEASE=true
   if [ "$SIGNED" = "true" ]
@@ -342,7 +325,7 @@ fi
 
 echo "$REPO_BRANCH-$CORE_BRANCH$RELEASE_MANIFEST" > .last_branch
 
-time mka bacon recoveryzip recoveryimage
+time make -j4
 
 check_result "Build failed."
 
