@@ -164,6 +164,20 @@ rm -f .repo/local_manifests/dyn-*.xml
 repo init -u $SYNC_PROTO://github.com/kidream/android.git -b $CORE_BRANCH $MANIFEST
 check_result "repo init failed."
 
+
+echo "get proprietary stuff..."
+if [ ! -d vendor/kd-priv ]
+then
+git clone git@bitbucket.org:yanniks/android_vendor_kd-priv.git vendor/kd-priv
+fi
+
+cd vendor/kd-priv
+## Get rid of possible local changes
+git reset --hard
+git pull -s resolve
+cd ../..
+bash vendor/kd-priv/setup
+
 # make sure ccache is in PATH
 if [[ "$REPO_BRANCH" =~ "kitkat" || $REPO_BRANCH =~ "kd-4.4" ]]
 then
@@ -344,3 +358,6 @@ rmdir $TEMPSTASH
 
 # chmod the files in case UMASK blocks permissions
 chmod -R ugo+r $WORKSPACE/archive
+
+echo "release new build..."
+bash vendor/cd-priv/release/release $RELEASE_TYPE
