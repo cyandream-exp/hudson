@@ -360,4 +360,4 @@ rmdir $TEMPSTASH
 chmod -R ugo+r $WORKSPACE/archive
 
 echo "release new build..."
-bash vendor/cd-priv/release/release $RELEASE_TYPE
+bash vendor/kd-priv/release/release $RELEASE_TYPE
