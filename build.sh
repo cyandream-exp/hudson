@@ -342,6 +342,11 @@ time mka
 
 check_result "Build failed."
 
+echo create zip...
+time mka otapackage
+
+check_result "creating zip failed."
+
 # archive the build.prop as well
 ZIP=$(ls $WORKSPACE/archive/*.zip)
 unzip -p $ZIP system/build.prop > $WORKSPACE/archive/build.prop
