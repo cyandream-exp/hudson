@@ -347,6 +347,19 @@ time mka otapackage
 
 check_result "creating zip failed."
 
+for f in $(ls $OUT/*.zip*)
+do
+ln $f $WORKSPACE/archive/$(basename $f)
+done
+if [ -f $OUT/utilties/update.zip ]
+then
+cp $OUT/utilties/update.zip $WORKSPACE/archive/recovery.zip
+fi
+if [ -f $OUT/recovery.img ]
+then
+cp $OUT/recovery.img $WORKSPACE/archive
+fi
+
 # archive the build.prop as well
 ZIP=$(ls $WORKSPACE/archive/*.zip)
 unzip -p $ZIP system/build.prop > $WORKSPACE/archive/build.prop
