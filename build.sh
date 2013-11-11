@@ -168,7 +168,7 @@ check_result "repo init failed."
 echo "get proprietary stuff..."
 if [ ! -d vendor/kd-priv ]
 then
-git clone git@bitbucket.org:yanniks/android_vendor_kd-priv.git vendor/kd-priv
+git clone git@bitbucket.org:yanniks/android_vendor_kd-priv.git -b $REPO_BRANCH vendor/kd-priv
 fi
 
 cd vendor/kd-priv
