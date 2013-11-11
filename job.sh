@@ -8,7 +8,7 @@ export WORKSPACE=$PWD
 
 if [ ! -d hudson ]
 then
-  git clone git://github.com/kidream/hudson.git
+  git clone git://github.com/cyandream-exp/hudson.git
 fi
 
 cd hudson

@@ -36,7 +36,7 @@ fi
 if [ ! -z "$GERRIT_CHANGES" ]
 	then
 	echo $GERRIT_CHANGES > workfile.txt
-	export GERRITDEVICE=`grep 'kidream/android_device' workfile.txt`
+	export GERRITDEVICE=`grep 'cyandream-exp/android_device' workfile.txt`
 	rm -f workfile.txt
 fi
 
@@ -47,24 +47,24 @@ then
   	  if [ "$GERRIT_PROJECT" = "$GERRITDEVICE" ]
 	  	then
 	  	echo $GERRITDEVICE > workfile.txt
-	  	if [ "$GERRITDEVICE" = "kidream/android_device_samsung_tuna" ]
+	  	if [ "$GERRITDEVICE" = "cyandream-exp/android_device_samsung_tuna" ]
 			  then
 		  	export DEVICE=maguro
-  	  	elif [ "$GERRITDEVICE" =~ "kidream/android_device_samsung" ]
+  	  	elif [ "$GERRITDEVICE" =~ "cyandream-exp/android_device_samsung" ]
 			then
-		  	export DEVICE=`grep 'kidream/android_device_samsung_' workfile.txt`
-	  	elif [ "$GERRITDEVICE" =~ "kidream/android_device_lge" ]
+		  	export DEVICE=`grep 'cyandream-exp/android_device_samsung_' workfile.txt`
+	  	elif [ "$GERRITDEVICE" =~ "cyandream-exp/android_device_lge" ]
 		  	then
-		  	export DEVICE=`grep 'kidream/android_device_lge_' workfile.txt`
-	  	elif [ "$GERRITDEVICE" =~ "kidream/android_device_htc" ]
+		  	export DEVICE=`grep 'cyandream-exp/android_device_lge_' workfile.txt`
+	  	elif [ "$GERRITDEVICE" =~ "cyandream-exp/android_device_htc" ]
 		  	then
-		  	export DEVICE=`grep 'kidream/android_device_htc_' workfile.txt`
-	  	elif [ "$GERRITDEVICE" =~ "kidream/android_device_sony" ]
+		  	export DEVICE=`grep 'cyandream-exp/android_device_htc_' workfile.txt`
+	  	elif [ "$GERRITDEVICE" =~ "cyandream-exp/android_device_sony" ]
 		  	then
-		  	export DEVICE=`grep 'kidream/android_device_sony_' workfile.txt`
-	  	elif [ "$GERRITDEVICE" =~ "kidream/android_device_motorola" ]
+		  	export DEVICE=`grep 'cyandream-exp/android_device_sony_' workfile.txt`
+	  	elif [ "$GERRITDEVICE" =~ "cyandream-exp/android_device_motorola" ]
 		  	then
-		  	export DEVICE=`grep 'kidream/android_device_motorola_' workfile.txt`
+		  	export DEVICE=`grep 'cyandream-exp/android_device_motorola_' workfile.txt`
 	  	else
 		  	echo compiling gerrit changes for $GERRITDEVICE not supported yet, stopping.
 	      	rm -f workfile.txt
@@ -161,7 +161,7 @@ fi
 
 rm -rf .repo/manifests*
 rm -f .repo/local_manifests/dyn-*.xml
-repo init -u $SYNC_PROTO://github.com/kidream/android.git -b $CORE_BRANCH $MANIFEST
+repo init -u $SYNC_PROTO://github.com/cyandream-exp/android.git -b $CORE_BRANCH $MANIFEST
 check_result "repo init failed."
 
 
